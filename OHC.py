@@ -3,7 +3,7 @@ import cf_units as cf
 
 def calc_ocean_heat(file,dlim=275):
     ds = xr.open_dataset(file,chunks={'lev':1})
-    lev_m, lev_bnds_m = change_depth_to_m(ds)
+    lev_bnds_m = change_depth_to_m(ds)
     temp_K = change_temp_to_K(ds) 
     dlev_lim, temp_lim = limit_temp_to_dlim(lev_bnds_m, temp_K, dlim)
     weighted_temp = dlev_lim*temp_lim
@@ -16,9 +16,8 @@ def calc_ocean_heat(file,dlim=275):
 def change_depth_to_m(ds):
     orig_units = cf.Unit(ds.lev.attrs['units'])
     target_units = cf.Unit('m')
-    lev_m = xr.apply_ufunc(orig_units.convert,ds.lev,target_units,dask='parallelized',output_dtypes=[ds.lev.dtype])
     lev_bnds_m = xr.apply_ufunc(orig_units.convert,ds.lev_bnds,target_units,dask='parallelized',output_dtypes=[ds.lev_bnds.dtype])
-    return lev_m, lev_bnds_m
+    return lev_bnds_m
 
 def change_temp_to_K(ds):
     orig_units = cf.Unit(ds.thetao.attrs['units'])

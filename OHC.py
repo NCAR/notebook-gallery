@@ -6,7 +6,6 @@ def read_thetao_nc(file):
     return ds
 
 def calc_ocean_heat(ds,dlim=275):
-    ds = xr.open_dataset(file,chunks={'lev':1})
     lev_bnds_m = change_depth_to_m(ds)
     temp_K = change_temp_to_K(ds) 
     dlev_lim, temp_lim = limit_temp_to_dlim(lev_bnds_m, temp_K, dlim)

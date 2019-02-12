@@ -7,7 +7,10 @@ def calc_ocean_heat(file,dlim=275):
     temp_K = change_temp_to_K(ds) 
     dlev_lim, temp_lim = limit_temp_to_dlim(lev_bnds_m, temp_K, dlim)
     weighted_temp = dlev_lim*temp_lim
-    heat = weighted_temp.sum(dim="lev")
+
+    rho = 1026 #kg/m^3
+    c_p = 3990 #J/(kg K)
+    heat = weighted_temp.sum(dim="lev")*rho*c_p
     return heat
 
 def change_depth_to_m(ds):

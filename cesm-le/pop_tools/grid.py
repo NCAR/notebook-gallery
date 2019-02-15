@@ -13,7 +13,6 @@ def vol3d(ds):
                         coords={'z_t': ds.z_t}) *
             xr.DataArray(np.ones((nk, nj, ni)), dims=('z_t', 'nlat', 'nlon'),
                          coords={'z_t': ds.z_t}))
-    print(MASK)
 
     # mask out cells where k is below KMT
     MASK = MASK.where(MASK <= ds.KMT - 1)

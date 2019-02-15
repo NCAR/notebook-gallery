@@ -1,10 +1,10 @@
 import xarray as xr
+import esmlab
 
 def weighted_mean_ds(ds, weights, dim):
 
     if callable(weights):
         weights = weights(ds)
-        print(weights)
         
     # copy time 
     dso = xr.Dataset()

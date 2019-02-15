@@ -1,0 +1,78 @@
+name: notebook-gallery
+channels:
+- conda-forge
+- nesii/label/dev-esmf
+- defaults
+dependencies:
+- python=3.6
+- pip=18.1
+# core pydata
+- numpy
+- scipy
+- pandas
+- xarray
+- dask
+- distributed
+- bottleneck
+- numba
+- scikit-learn
+- scikit-image
+- statsmodels
+# - keras
+- metpy
+- eofs
+# serialization
+- h5py
+- h5netcdf
+- netcdf4
+- rasterio
+- zarr
+# visualization
+- matplotlib
+- seaborn
+- bokeh
+- cartopy
+- holoviews
+- cmocean
+# notebooks and things
+- intake
+- intake-xarray
+- jupyter
+- jupyterlab
+- jupyter_dashboards
+- ipywidgets
+- notebook
+# testing
+- pytest
+# misc
+- cf_units
+- cftime
+- gsw # https://teos-10.github.io/GSW-Python/install.html
+- esmpy
+- xesmf
+- psutil
+- datashader
+- nomkl
+- lz4
+- tabulate
+- tornado
+- tqdm
+- fastparquet
+- s3fs
+- zict
+- python-blosc
+- pandoc
+- pandocfilters
+- cytoolz
+- toolz
+- dask-searchcv
+- gcsfs
+- nodejs
+- mpi4py
+- pip:
+  - watermark
+  - seawater
+  - git+https://github.com/dask/dask-jobqueue.git
+  - git+https://github.com/NCAR/intake-esm.git
+  - git+https://github.com/NCAR/esmlab.git
+  - git+https://github.com/matt-long/xcollection.git

@@ -1,0 +1,14 @@
+
+global_avg:
+  name: global_avg
+  description: compute global mean
+  file_format: nc
+  operators:
+    - !operator
+      applied_method: 'z_t-nlat-nlon:mean'
+      module: esmlab_stats_dev
+      function: weighted_mean_ds
+      kwargs: 
+        weights: !!python/name:pop_tools.grid.vol3d
+        dim: [z_t, nlat, nlon]
+

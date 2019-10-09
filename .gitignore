@@ -103,3 +103,4 @@ venv.bak/
 # mypy
 .mypy_cache/
 dask-worker.*
+data/ncl_data/MPAS.nc

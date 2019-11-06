@@ -1,6 +1,6 @@
 # notebook-gallery
 
-This gallery is intended to provide working examples for how to perform data analysis for Earth System science. 
+This gallery is intended to provide working examples for how to perform data analysis for Earth System science using Pangeo, a collection of Python libraries including XArray, Dask, and Intake-ESM. 
 
 ## System Requirements
 

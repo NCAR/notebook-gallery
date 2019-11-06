@@ -19,9 +19,8 @@ install:
     - wget http://repo.continuum.io/miniconda/${MINICONDA_NAME} -O miniconda.sh;
     - bash miniconda.sh -b -p $HOME/miniconda
     - export PATH="$HOME/miniconda/bin:$PATH"
-    - conda env create --name parcels --file environment_py${PY_VERSION}_${TRAVIS_OS_NAME}.yml
-    - source activate parcels
-    - python setup.py install
+    - conda env create --name notebook-gallery --file environment.yml
+    - source activate notebook-gallery
 
 script:
     - |
@@ -36,22 +35,9 @@ script:
         export CONDA_BUILD_SYSROOT=/
         export C_INCLUDE_PATH=$C_INCLUDE_PATH:/Applications/Xcode.app/Contents//Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/
       fi
-    - py.test -v -s tests/
-    - |
-      # only get examples on linux
-      if [[ "${TRAVIS_OS_NAME}" = "linux" ]]; then
-        parcels_get_examples examples/;
-      fi
-    - |
-      # run linter on linux
-      if [[ "${TRAVIS_OS_NAME}" = "linux" ]]; then
-        flake8 parcels;
-        flake8 tests;
-      fi
     - |
       # evaluate example scripts and notebooks on linux only
       if [[ "${TRAVIS_OS_NAME}" = "linux" ]]; then
         #py.test -v -s examples/*.py;
         py.test -v -s --nbval-lax */*.ipynb;
-
       fi

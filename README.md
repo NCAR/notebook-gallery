@@ -34,3 +34,8 @@ Within your web browser, navigate to the Python Notebook you wish to run, and be
 
 https://www.youtube.com/watch?v=7wfPqAyYADY
 
+## Curent Build Status
+
+Click on the following icon to see the latest testing output for these notebooks: 
+
+[![Build Status](https://travis-ci.org/NCAR/notebook-gallery.svg?branch=master)](https://travis-ci.org/NCAR/notebook-gallery)

@@ -43,7 +43,9 @@ dependencies:
 - ipywidgets
 - notebook
 # testing
-- pytest
+- pytest<4.0
+- nbval
+- ipykernel<5.0
 # misc
 - cf_units
 - cftime

@@ -47,3 +47,5 @@ dependencies:
 - pip:
   - git+https://github.com/NCAR/intake-esm.git
   - git+https://github.com/NCAR/esmlab.git
+  - git+https://github.com/andersy005/pooch.git@ftp-downloader#egg=pooch
+  - ncar-jobqueue

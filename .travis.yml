@@ -14,6 +14,7 @@ install:
     - export PATH="$HOME/miniconda/bin:$PATH"
     - conda env create --name notebook-gallery --file environment.yml
     - source activate notebook-gallery
+    - python -m pip install .
 
 script:
     - |
@@ -32,5 +33,6 @@ script:
       # evaluate example scripts and notebooks on linux only
       if [[ "${TRAVIS_OS_NAME}" = "linux" ]]; then
         #py.test -v -s examples/*.py;
-        py.test -v -s --current-env --nbval-lax */*.ipynb;
+        #py.test -v -s --current-env --nbval-lax */*.ipynb;
+        py.test -v -s --current-env --nbval-lax mpas/*.ipynb;
       fi

@@ -7,7 +7,7 @@ dependencies:
 - bottleneck
 - cartopy
 - cf_units
-- cftime==1.0.3.4
+- cftime>=1.0.4.2
 - cmocean
 - dask-jobqueue>=0.7.0
 - dask>=2.7
@@ -48,4 +48,5 @@ dependencies:
   - git+https://github.com/NCAR/intake-esm.git
   - git+https://github.com/NCAR/esmlab.git
   - git+https://github.com/andersy005/pooch.git@ftp-downloader#egg=pooch
+  - git+https://github.com/hhuangwx/cmaps.git
   - ncar-jobqueue

@@ -31,6 +31,7 @@ Then to run the notebooks, give these commands:
 
 ```bash
 conda activate notebook-gallery
+python -m pip install .
 jupyter lab
 ```
 

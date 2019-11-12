@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/NCAR/notebook-gallery.svg?branch=master)](https://travis-ci.org/NCAR/notebook-gallery)
+[![CircleCI](https://img.shields.io/circleci/project/github/NCAR/notebook-gallery/master.svg?style=for-the-badge&logo=circleci)](https://circleci.com/gh/NCAR/notebook-gallery)
 
 # Notebook Gallery
 

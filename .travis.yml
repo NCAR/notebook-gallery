@@ -13,8 +13,8 @@ install:
     - bash miniconda.sh -b -p $HOME/miniconda
     - export PATH="$HOME/miniconda/bin:$PATH"
     - conda env create --name notebook-gallery --file environment.yml
-    - python -m pip install .
     - source activate notebook-gallery
+    - python -m pip install .
 
 script:
     - |

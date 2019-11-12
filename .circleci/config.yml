@@ -1,0 +1,50 @@
+version: 2
+# Tell CircleCI to use this workflow
+workflows:
+  version: 2
+  default:
+    jobs:
+      - "build"
+
+jobs:
+  "build":
+    docker:
+      - image: continuumio/miniconda3:latest
+
+    environment:
+      ENV_NAME: "notebook-gallery"
+
+    steps:
+
+      # Get our data and merge with upstream
+      - checkout
+      # Restore cached files to speed things up
+      - restore_cache:
+          key: deps-{{ .Environment.CIRCLE_PROJECT_REPONAME }}-{{ .Environment.CIRCLE_JOB }}
+      - run: # install and activate conda environment
+          name: Install conda environment
+          command: |
+            conda env update -f environment.yml
+            source activate ${ENV_NAME}
+            python -m pip install .
+            conda list
+      - run:
+          name: Run Tests
+          command: |
+            source activate ${ENV_NAME}
+            pytest --junitxml=test-reports/junit.xml -v -s --current-env --nbval-lax mpas/*.ipynb
+       
+
+      # Cache some files for a speedup in subsequent builds
+      - save_cache:
+          key: deps-{{ .Environment.CIRCLE_PROJECT_REPONAME }}-{{ .Environment.CIRCLE_JOB }}
+          paths:
+            - "/opt/conda/envs/${ENV_NAME}/"
+            - "/opt/conda/pkgs"
+
+      # Tell Circle to store the documentation output in a folder that we can access later
+      - store_test_results:
+          path: test-reports
+
+      - store_artifacts:
+          path: test-reports

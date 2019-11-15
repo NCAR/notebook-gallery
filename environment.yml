@@ -1,80 +1,52 @@
 name: notebook-gallery
 channels:
 - conda-forge
-- nesii/label/dev-esmf
 - defaults
 dependencies:
-- python=3.6
-- pip=18.1
-# core pydata
-- numpy
-- scipy
-- pandas
-- xarray
-- dask
-- distributed
-- bottleneck
-- numba
-- scikit-learn
-- scikit-image
-- statsmodels
-# - keras
-- metpy
-- eofs
-# serialization
-- h5py
-- h5netcdf
-- netcdf4
-- rasterio
-- zarr
-# visualization
-- matplotlib
-- seaborn
 - bokeh
+- bottleneck
 - cartopy
-- holoviews
+- cf_units
+- cftime>=1.0.4.2
 - cmocean
-# notebooks and things
+- dask-jobqueue>=0.7.0
+- dask>=2.7
+- eofs
+- h5py
+- holoviews
+- hvplot
 - intake
 - intake-xarray
-- jupyter
-- jupyterlab
-- jupyter_dashboards
 - ipywidgets
-- notebook
-# testing
-- pytest<4.0
+- jupyterlab
+- matplotlib
+- metpy
+- mpi4py
 - nbval
-- ipykernel<5.0
-# misc
-- cf_units
-- cftime
-- gsw # https://teos-10.github.io/GSW-Python/install.html
-- esmpy
-- xesmf
-- psutil
-- datashader
-- nomkl
-- lz4
-- tabulate
-- tornado
-- tqdm
-- fastparquet
-- s3fs
-- zict
-- python-blosc
+- netcdf4
+- nodejs
+- numba
+- pandas
 - pandoc
 - pandocfilters
-- cytoolz
-- toolz
-- dask-searchcv
-- gcsfs
-- nodejs
-- mpi4py
+- pip
+- pre-commit
+- psutil
+- pytest
+- python=3.7
+- rasterio
+- scikit-learn
+- scipy
+- seaborn
+- statsmodels
+- tqdm
+- watermark
+- xarray>=0.14.0
+- xesmf
+- zarr
 - pip:
-  - watermark
-  - seawater
-  - git+https://github.com/dask/dask-jobqueue.git
   - git+https://github.com/NCAR/intake-esm.git
   - git+https://github.com/NCAR/esmlab.git
-  - git+https://github.com/matt-long/xcollection.git
+  - git+https://github.com/andersy005/pooch.git@ftp-downloader#egg=pooch
+  - git+https://github.com/hhuangwx/cmaps.git
+  - ncar-jobqueue

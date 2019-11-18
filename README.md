@@ -27,12 +27,23 @@ cd notebook-gallery
 conda env create --name notebook-gallery --file ./environment.yml
 ```
 
-Then to run the notebooks, give these commands:
+To finish installing packages, give these commands:
 
 ```bash
 conda activate notebook-gallery
 python -m pip install .
+```
+
+Then to run the notebooks, give this command (within the activated conda environment):
+
+```bash
 jupyter lab
 ```
 
 Within your web browser, navigate to the Python Notebook you wish to run, and begin interacting with it. An example video tutorial showing this process is given [here](https://www.youtube.com/watch?v=7wfPqAyYADY)
+
+When you are done, you can hit CTRL-C to kill the lab session, and deactivate your conda environment with this command:
+
+```bash
+conda deactivate
+```

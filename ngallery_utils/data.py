@@ -16,6 +16,7 @@ URLS = {
     'aviso_madt_2015.tar.gz': f'{TUTORIAL_DATA_URL}/aviso_madt_2015.tar.gz',
     'NARR_19930313_0000.nc': f'{TUTORIAL_DATA_URL}/NARR_19930313_0000.nc',
     'MPAS.nc': f'{TUTORIAL_DATA_URL}/MPAS.nc',
+    'Oklahoma.static.nc': f'{TUTORIAL_DATA_URL}/Oklahoma.static.nc',
 }
 DATASETS = pooch.create(
     path=['~', '.aletheia', 'data'],

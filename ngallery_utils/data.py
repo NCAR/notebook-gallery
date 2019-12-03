@@ -17,6 +17,9 @@ URLS = {
     'NARR_19930313_0000.nc': f'{TUTORIAL_DATA_URL}/NARR_19930313_0000.nc',
     'MPAS.nc': f'{TUTORIAL_DATA_URL}/MPAS.nc',
     'Oklahoma.static.nc': f'{TUTORIAL_DATA_URL}/Oklahoma.static.nc',
+    'uas.rcp85.CanESM2.CRCM5-UQAM.day.NAM-44i.raw.Colorado.nc': f'{TUTORIAL_DATA_URL}/uas.rcp85.CanESM2.CRCM5-UQAM.day.NAM-44i.raw.Colorado.nc',
+    'uas.hist.CanESM2.CRCM5-UQAM.day.NAM-44i.raw.Colorado.nc': f'{TUTORIAL_DATA_URL}/uas.hist.CanESM2.CRCM5-UQAM.day.NAM-44i.raw.Colorado.nc',
+    'uas.gridMET.NAM-44i.Colorado.nc': f'{TUTORIAL_DATA_URL}/uas.gridMET.NAM-44i.Colorado.nc'
 }
 DATASETS = pooch.create(
     path=['~', '.aletheia', 'data'],

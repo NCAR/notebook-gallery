@@ -2,6 +2,17 @@ import os
 
 import pooch
 
+from .util import identify_host
+
+
+hostname = identify_host()
+
+data_cache_map = {'cheyenne': '/glade/work/abanihi/aletheia-data/tutorial-data/',
+                  'casper': '/glade/work/abanihi/aletheia-data/tutorial-data/',
+                  'hobart': '/ftp/archive/aletheia-data/tutorial-data/',
+                  'unknown': '~/aletheia-data/tutorial-data/',
+                 }
+
 BASE_URL = 'ftp://ftp.cgd.ucar.edu/archive/aletheia-data'
 TUTORIAL_DATA_URL = f'{BASE_URL}/tutorial-data'
 URLS = {
@@ -19,7 +30,7 @@ URLS = {
     'Oklahoma.static.nc': f'{TUTORIAL_DATA_URL}/Oklahoma.static.nc',
 }
 DATASETS = pooch.create(
-    path=['~', '.aletheia', 'data'],
+    path=data_cache_map[hostname],
     version_dev='master',
     base_url='ftp://ftp.cgd.ucar.edu/archive/aletheia-data',
     urls=URLS,

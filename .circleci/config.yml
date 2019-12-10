@@ -31,6 +31,7 @@ jobs:
       - run:
           name: Run Tests
           command: |
+            no_output_timeout: 30m
             source activate ${ENV_NAME}
             pytest --junitxml=test-reports/junit.xml -v -s --current-env --nbval-lax mpas/*.ipynb Bias-Correction/*.ipynb
        

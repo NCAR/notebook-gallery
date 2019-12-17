@@ -28,14 +28,14 @@ jobs:
           command: |
             conda env update -f environment.yml -q
             source activate ${ENV_NAME}
-            pip install pytest-circleci-parallelized
             python -m pip install .
             conda list
       - run:
           name: Run Tests
           command: |  
             source activate ${ENV_NAME}
-            pytest --junitxml=test-reports/junit.xml -n 1 -v --current-env --circleci-parallelize --nbval-lax mpas/*.ipynb Bias-Correction/*.ipynb ohc/*.ipynb
+            echo $(circleci tests glob "mpas/*.ipynb" "Bias-Correction/*.ipynb" "ohc/*.ipynb")
+            circleci tests glob "mpas/*.ipynb" "Bias-Correction/*.ipynb" "ohc/*.ipynb" | circleci tests split --split-by=timings | xargs python -m pytest --reuse-db --junitxml=test_results/results.xml -v --current-env --nbval-lax 
           no_output_timeout: 30m
 
       # Cache some files for a speedup in subsequent builds

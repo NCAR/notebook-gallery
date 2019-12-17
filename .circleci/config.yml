@@ -11,7 +11,7 @@ jobs:
     docker:
       - image: continuumio/miniconda3:latest
 
-    parallelism: 4
+    parallelism: 6
 
     environment:
       ENV_NAME: "notebook-gallery"

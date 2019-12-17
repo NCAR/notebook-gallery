@@ -35,8 +35,8 @@ jobs:
           command: |  
             mkdir -p ~/test-reports
             source activate ${ENV_NAME}
-            echo $(circleci tests glob "mpas/*.ipynb" "Bias-Correction/*.ipynb" "ohc/*.ipynb")
-            circleci tests glob "mpas/*.ipynb" "Bias-Correction/*.ipynb" "ohc/*.ipynb" | circleci tests split --split-by=timings | xargs python -m pytest --junitxml=~/test-reports/results.xml -v --current-env --nbval-lax 
+            echo $(circleci tests glob "Run-Anywhere/**/*.ipynb")
+            circleci tests glob "Run-Anywhere/**/*.ipynb" | circleci tests split --split-by=timings | xargs python -m pytest --junitxml=~/test-reports/results.xml -v --current-env --nbval-lax 
           no_output_timeout: 30m
 
       # Cache some files for a speedup in subsequent builds

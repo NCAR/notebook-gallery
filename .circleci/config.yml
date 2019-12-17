@@ -33,9 +33,10 @@ jobs:
       - run:
           name: Run Tests
           command: |  
+            mkdir -p ~/test-reports
             source activate ${ENV_NAME}
             echo $(circleci tests glob "mpas/*.ipynb" "Bias-Correction/*.ipynb" "ohc/*.ipynb")
-            circleci tests glob "mpas/*.ipynb" "Bias-Correction/*.ipynb" "ohc/*.ipynb" | circleci tests split --split-by=timings | xargs python -m pytest --junitxml=test_results/results.xml -v --current-env --nbval-lax 
+            circleci tests glob "mpas/*.ipynb" "Bias-Correction/*.ipynb" "ohc/*.ipynb" | circleci tests split --split-by=timings | xargs python -m pytest --junitxml=~/test-reports/results.xml -v --current-env --nbval-lax 
           no_output_timeout: 30m
 
       # Cache some files for a speedup in subsequent builds
@@ -47,7 +48,7 @@ jobs:
 
       # Tell Circle to store the documentation output in a folder that we can access later
       - store_test_results:
-          path: test-reports
+          path: ~/test-reports
 
       - store_artifacts:
-          path: test-reports
+          path: ~/test-reports

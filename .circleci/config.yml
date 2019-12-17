@@ -28,6 +28,7 @@ jobs:
           command: |
             conda env update -f environment.yml -q
             source activate ${ENV_NAME}
+            pip install pytest-circleci-parallelized
             python -m pip install .
             conda list
       - run:

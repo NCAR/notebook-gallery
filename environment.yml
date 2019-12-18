@@ -32,7 +32,7 @@ dependencies:
 - pip
 - pre-commit
 - psutil
-- pytest-xdist
+- pytest
 - python=3.7
 - rasterio
 - scikit-learn

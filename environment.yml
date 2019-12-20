@@ -50,3 +50,4 @@ dependencies:
   - pooch
   - git+https://github.com/hhuangwx/cmaps.git
   - ncar-jobqueue
+  - git+https://github.com/NCAR/notebook-gallery.git#egg=ngallery_utils

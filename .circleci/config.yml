@@ -28,7 +28,7 @@ jobs:
           command: |
             conda env update -f environment.yml -q
             source activate ${ENV_NAME}
-            python -m pip install .
+            #python -m pip install .
             conda list
       - run:
           name: Run Tests

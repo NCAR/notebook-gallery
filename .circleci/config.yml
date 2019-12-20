@@ -15,6 +15,7 @@ jobs:
 
     environment:
       ENV_NAME: "notebook-gallery"
+      TEST_FILES: "Run-Anywhere/**/*.ipynb"
 
     steps:
 
@@ -22,26 +23,25 @@ jobs:
       - checkout
       # Restore cached files to speed things up
       - restore_cache:
-          key: deps-v2-{{ .Environment.CIRCLE_PROJECT_REPONAME }}-{{ .Environment.CIRCLE_JOB }}
+          key: deps-{{ .Environment.CIRCLE_PROJECT_REPONAME }}-{{ .Environment.CIRCLE_JOB }}-{{ checksum "environment.yml" }}
       - run: # install and activate conda environment
           name: Install conda environment
           command: |
             conda env update -f environment.yml -q
             source activate ${ENV_NAME}
-            #python -m pip install .
             conda list
       - run:
           name: Run Tests
           command: |  
             mkdir -p ~/test-reports
             source activate ${ENV_NAME}
-            echo $(circleci tests glob "Run-Anywhere/**/*.ipynb")
-            circleci tests glob "Run-Anywhere/**/*.ipynb" | circleci tests split --split-by=timings | xargs python -m pytest --junitxml=~/test-reports/results.xml -v --current-env --nbval-lax 
+            echo $(circleci tests glob ${TEST_FILES})
+            circleci tests glob ${TEST_FILES} | circleci tests split --split-by=timings | xargs python -m pytest --junitxml=~/test-reports/results.xml -v --current-env --nbval-lax 
           no_output_timeout: 30m
 
       # Cache some files for a speedup in subsequent builds
       - save_cache:
-          key: deps-{{ .Environment.CIRCLE_PROJECT_REPONAME }}-{{ .Environment.CIRCLE_JOB }}
+          key: deps-{{ .Environment.CIRCLE_PROJECT_REPONAME }}-{{ .Environment.CIRCLE_JOB }}-{{ checksum "environment.yml" }}
           paths:
             - "/opt/conda/envs/${ENV_NAME}/"
             - "/opt/conda/pkgs"

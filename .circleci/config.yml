@@ -11,6 +11,8 @@ jobs:
     docker:
       - image: continuumio/miniconda3:latest
 
+    parallelism: 5
+
     environment:
       ENV_NAME: "notebook-gallery"
 
@@ -30,10 +32,12 @@ jobs:
             conda list
       - run:
           name: Run Tests
-          command: |
+          command: |  
+            mkdir -p ~/test-reports
             source activate ${ENV_NAME}
-            pytest --junitxml=test-reports/junit.xml -v -s --current-env --nbval-lax mpas/*.ipynb
-       
+            echo $(circleci tests glob "Run-Anywhere/**/*.ipynb")
+            circleci tests glob "Run-Anywhere/**/*.ipynb" | circleci tests split --split-by=timings | xargs python -m pytest --junitxml=~/test-reports/results.xml -v --current-env --nbval-lax 
+          no_output_timeout: 30m
 
       # Cache some files for a speedup in subsequent builds
       - save_cache:
@@ -44,7 +48,7 @@ jobs:
 
       # Tell Circle to store the documentation output in a folder that we can access later
       - store_test_results:
-          path: test-reports
+          path: ~/test-reports
 
       - store_artifacts:
-          path: test-reports
+          path: ~/test-reports

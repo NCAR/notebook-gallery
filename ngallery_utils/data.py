@@ -31,7 +31,7 @@ URLS = {
     'uas.rcp85.CanESM2.CRCM5-UQAM.day.NAM-44i.raw.Colorado.nc': f'{TUTORIAL_DATA_URL}/uas.rcp85.CanESM2.CRCM5-UQAM.day.NAM-44i.raw.Colorado.nc',
     'uas.hist.CanESM2.CRCM5-UQAM.day.NAM-44i.raw.Colorado.nc': f'{TUTORIAL_DATA_URL}/uas.hist.CanESM2.CRCM5-UQAM.day.NAM-44i.raw.Colorado.nc',
     'uas.gridMET.NAM-44i.Colorado.nc': f'{TUTORIAL_DATA_URL}/uas.gridMET.NAM-44i.Colorado.nc'
-    'WRF_output_2T_RR_F/all_T2_RR_F_2014_2019_SST.nc': f'{TUTORIAL_DATA_URL}/all_T2_RR_F_2014_2019_SST.nc'
+    'all_T2_RR_F_2014_2019_SST.nc': f'{TUTORIAL_DATA_URL}/all_T2_RR_F_2014_2019_SST.nc'
 }
 DATASETS = pooch.create(
     path=data_cache_map[hostname],

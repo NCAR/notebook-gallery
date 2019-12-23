@@ -7,12 +7,23 @@
   - [Downloading and Running the Notebooks](#downloading-and-running-the-notebooks)
 
 This gallery is intended to provide working examples for how to perform data analysis for Earth System science using Pangeo, a collection of Python libraries including XArray, Dask, and Intake-ESM.
+ 
 
-## System Requirements
+## Try these notebooks on pangeo.binder.io
+
+To try these notebooks in your web browser, just click on the binder link:
+
+[![Binder](https://i.imgur.com/xzKbKkP.png)](https://binder.pangeo.io/v2/gh/NCAR/notebook-gallery/master)
+
+
+## Running Locally
+
+
+### System Requirements
 
 It is necessary to have the Conda python package manager on your system. Instructions for installing Miniconda, a lightweight version of the Conda system, can be found [here](https://docs.conda.io/en/latest/miniconda.html)
 
-## Downloading and Running the Notebooks
+### Downloading and Running the Notebooks
 
 First, open a command line program and navigate to the directory where you would like to run the notebooks. Then give this command to download this repository:
 

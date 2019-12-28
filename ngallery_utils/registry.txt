@@ -13,4 +13,4 @@ Oklahoma.static.nc fba045b0f1ae6c5eca916f450e21b30cfa312ebb979f67cf2be5fe2da732e
 uas.rcp85.CanESM2.CRCM5-UQAM.day.NAM-44i.raw.Colorado.nc 64bf35b773efa8d6eb3379ea0d082ae76d92ad97738f0766d90cecda59548482
 uas.hist.CanESM2.CRCM5-UQAM.day.NAM-44i.raw.Colorado.nc 64bf35b773efa8d6eb3379ea0d082ae76d92ad97738f0766d90cecda59548482
 uas.gridMET.NAM-44i.Colorado.nc 31fb864eb77e12a8f388c00acd13be0fc9a345b1a4668bc04f5ff430cb11d55c
-T2_RR_F_2014_08.nc 
+T2_RR_F_2014_08.nc b065861a8f635f5001b30435d1b2c0ebe00597c864388ccbb6712dc7414bff33

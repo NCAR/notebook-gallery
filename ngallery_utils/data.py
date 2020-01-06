@@ -30,7 +30,9 @@ URLS = {
     'Oklahoma.static.nc': f'{TUTORIAL_DATA_URL}/Oklahoma.static.nc',
     'uas.rcp85.CanESM2.CRCM5-UQAM.day.NAM-44i.raw.Colorado.nc': f'{TUTORIAL_DATA_URL}/uas.rcp85.CanESM2.CRCM5-UQAM.day.NAM-44i.raw.Colorado.nc',
     'uas.hist.CanESM2.CRCM5-UQAM.day.NAM-44i.raw.Colorado.nc': f'{TUTORIAL_DATA_URL}/uas.hist.CanESM2.CRCM5-UQAM.day.NAM-44i.raw.Colorado.nc',
-    'uas.gridMET.NAM-44i.Colorado.nc': f'{TUTORIAL_DATA_URL}/uas.gridMET.NAM-44i.Colorado.nc'
+    'uas.gridMET.NAM-44i.Colorado.nc': f'{TUTORIAL_DATA_URL}/uas.gridMET.NAM-44i.Colorado.nc',
+    'T2_RR_F_2014_08.nc': f'{TUTORIAL_DATA_URL}/T2_RR_F_2014_08.nc',
+    'wrfinput_d02': f'{TUTORIAL_DATA_URL}/wrfinput_d02'
 }
 DATASETS = pooch.create(
     path=data_cache_map[hostname],

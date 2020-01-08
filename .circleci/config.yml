@@ -15,7 +15,7 @@ jobs:
 
     environment:
       ENV_NAME: "notebook-gallery"
-      TEST_FILES: "Run-Anywhere/**/*.ipynb"
+      TEST_FILES: "notebooks/Run-Anywhere/**/*.ipynb"
 
     steps:
 

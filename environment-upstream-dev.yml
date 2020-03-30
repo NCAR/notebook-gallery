@@ -1,0 +1,53 @@
+name: notebook-gallery
+channels:
+- conda-forge
+- defaults
+dependencies:
+- bokeh
+- bottleneck
+- cartopy
+- cf_units
+- cftime>=1.0.4.2
+- cmocean
+- dask-jobqueue>=0.7.0
+- dask>=2.7
+- eofs
+- h5py
+- holoviews
+- hvplot
+- intake-xarray
+- ipywidgets
+- jupyterlab
+- matplotlib
+- metpy
+- mpi4py
+- nbval
+- netcdf4
+- nodejs
+- numba
+- pandas
+- pandoc
+- pandocfilters
+- pip
+- pre-commit
+- psutil
+- pytest
+- python=3.7
+- rasterio
+- scikit-learn
+- scipy
+- seaborn
+- statsmodels
+- tqdm
+- watermark
+- xesmf
+- zarr
+- pip:
+  - git+https://github.com/pydata/xarray.git
+  - git+https://github.com/intake/intake.git
+  - git+https://github.com/NCAR/intake-esm.git
+  - git+https://github.com/NCAR/esmlab.git
+  - pooch
+  - git+https://github.com/hhuangwx/cmaps.git
+  - ncar-jobqueue
+  - git+https://github.com/NCAR/notebook-gallery.git#egg=ngallery_utils

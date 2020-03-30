@@ -5,7 +5,7 @@ workflows:
   nightly:
     triggers:
       - schedule:
-          cron: "20 17 * * *"
+          cron: "0 0 * * *"
           filters:
             branches:
               only:
@@ -23,13 +23,7 @@ workflows:
       - "python-3.8"
 
 shared: &shared
-    environment:
-      ENV_NAME: "notebook-gallery"
-      TEST_FILES: "notebooks/Run-Anywhere/**/*.ipynb"
-
     steps:
-
-      # Get our data and merge with upstream
       - checkout
       # Restore cached files to speed things up
       - restore_cache:
@@ -43,10 +37,10 @@ shared: &shared
       - run:
           name: Run Tests
           command: |
-            mkdir -p ~/test-reports
+            mkdir -p test-reports
             source activate ${ENV_NAME}
             echo $(circleci tests glob ${TEST_FILES})
-            circleci tests glob ${TEST_FILES} | circleci tests split --split-by=timings | xargs python -m pytest --junitxml=~/test-reports/results.xml -v --current-env --nbval-lax
+            circleci tests glob ${TEST_FILES} | circleci tests split --split-by=timings | xargs python -m pytest --junitxml=test-reports/results.xml -v --current-env --nbval-lax
           no_output_timeout: 30m
 
       # Cache some files for a speedup in subsequent builds
@@ -58,10 +52,10 @@ shared: &shared
 
       # Tell Circle to store the documentation output in a folder that we can access later
       - store_test_results:
-          path: ~/test-reports
+          path: test-reports
 
       - store_artifacts:
-          path: ~/test-reports
+          path: test-reports
 
 jobs:
 
@@ -71,6 +65,8 @@ jobs:
       - image: ncarxdev/miniconda:3.7
     environment:
       ENV_FILE: "./environment-upstream-dev.yml"
+      ENV_NAME: "notebook-gallery"
+      TEST_FILES: "notebooks/Run-Anywhere/**/*.ipynb"
 
   "python-3.6":
     <<: *shared
@@ -78,6 +74,8 @@ jobs:
       - image: ncarxdev/miniconda:3.6
     environment:
       ENV_FILE: "./environment.yml"
+      ENV_NAME: "notebook-gallery"
+      TEST_FILES: "notebooks/Run-Anywhere/**/*.ipynb"
 
   "python-3.7":
     <<: *shared
@@ -85,6 +83,8 @@ jobs:
       - image: ncarxdev/miniconda:3.7
     environment:
       ENV_FILE: "./environment.yml"
+      ENV_NAME: "notebook-gallery"
+      TEST_FILES: "notebooks/Run-Anywhere/**/*.ipynb"
 
   "python-3.8":
     <<: *shared
@@ -92,3 +92,5 @@ jobs:
       - image: ncarxdev/miniconda:3.8
     environment:
       ENV_FILE: "./environment.yml"
+      ENV_NAME: "notebook-gallery"
+      TEST_FILES: "notebooks/Run-Anywhere/**/*.ipynb"

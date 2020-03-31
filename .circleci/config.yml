@@ -37,7 +37,7 @@ shared: &shared
       - run:
           name: Install conda environment
           command: |
-            conda env update -f ${ENV_FILE} -q
+            conda env update -n base -f ${ENV_FILE}
             source activate ${ENV_NAME}
             conda list
 

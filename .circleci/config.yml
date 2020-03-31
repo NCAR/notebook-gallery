@@ -37,7 +37,9 @@ shared: &shared
       - run:
           name: Install conda environment
           command: |
-            conda env update -v -v -n base -f ${ENV_FILE}
+            conda env update -n base -f ${ENV_FILE}
+            # Install ngallery-utils in current directory.  Do it here to install what is here locally.
+            python -m pip install .
 
       - run:
           name: List conda packages

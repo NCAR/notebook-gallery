@@ -1,18 +1,16 @@
 name: notebook-gallery
 channels:
 - conda-forge
-- defaults
 dependencies:
 - bokeh
 - bottleneck
 - cartopy
-- cf_units
+- cf-units
 - cftime>=1.0.4.2
 - cmaps
 - cmocean
 - dask-jobqueue>=0.7.0
 - dask>=2.7
-- eofs
 - h5py
 - holoviews
 - hvplot
@@ -21,31 +19,21 @@ dependencies:
 - jupyterlab
 - matplotlib
 - metpy
-- mpi4py
 - nbval
 - netcdf4
 - nodejs
 - numba
 - pandas
-- pandoc
-- pandocfilters
 - pip
 - pre-commit
-- psutil
 - pytest
-- rasterio
-- scikit-learn
 - scipy
-- seaborn
-- statsmodels
 - tqdm
 - watermark
 - xarray>=0.14.0
 - xesmf
-- zarr
 - pip:
   - git+https://github.com/NCAR/intake-esm.git
   - git+https://github.com/NCAR/esmlab.git
-  - git+https://github.com/NCAR/notebook-gallery.git#egg=ngallery_utils
   - ncar-jobqueue
   - pooch

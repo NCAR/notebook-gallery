@@ -2,53 +2,100 @@ version: 2
 # Tell CircleCI to use this workflow
 workflows:
   version: 2
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - "upstream-dev"
+      - "python-3.6"
+      - "python-3.7"
+      - "python-3.8"
   default:
     jobs:
-      - "build"
+      - "upstream-dev"
+      - "python-3.6"
+      - "python-3.7"
+      - "python-3.8"
 
-jobs:
-  "build":
-    docker:
-      - image: continuumio/miniconda3:latest
-
-    parallelism: 5
-
-    environment:
-      ENV_NAME: "notebook-gallery"
-      TEST_FILES: "notebooks/Run-Anywhere/**/*.ipynb"
-
+shared: &shared
     steps:
-
-      # Get our data and merge with upstream
       - checkout
-      # Restore cached files to speed things up
+      - run:
+          name: Environment Checksum
+          command: |
+            # Get around limitation of using custom ENV variables in checksum key
+            cp ${ENV_FILE} _env_copy
+
       - restore_cache:
-          key: deps-{{ .Environment.CIRCLE_PROJECT_REPONAME }}-{{ .Environment.CIRCLE_JOB }}-{{ checksum "environment.yml" }}
-      - run: # install and activate conda environment
+          key: deps-{{ .Environment.CIRCLE_PROJECT_REPONAME }}-{{ .Environment.CIRCLE_JOB }}-{{ checksum "_env_copy" }}
+
+      - run:
           name: Install conda environment
           command: |
-            conda env update -f environment.yml -q
-            source activate ${ENV_NAME}
+            conda env update -n base -f ${ENV_FILE}
+            # Install ngallery-utils in current directory.  Do it here to install what is here locally.
+            python -m pip install .
+
+      - run:
+          name: List conda packages
+          command: |
             conda list
+
       - run:
           name: Run Tests
-          command: |  
-            mkdir -p ~/test-reports
-            source activate ${ENV_NAME}
+          parallelism: 5
+          command: |
+            mkdir -p test-reports
             echo $(circleci tests glob ${TEST_FILES})
-            circleci tests glob ${TEST_FILES} | circleci tests split --split-by=timings | xargs python -m pytest --junitxml=~/test-reports/results.xml -v --current-env --nbval-lax 
+            circleci tests glob ${TEST_FILES} | circleci tests split --split-by=timings | xargs python -m pytest --junitxml=test-reports/results.xml -v --current-env --nbval-lax
           no_output_timeout: 30m
 
-      # Cache some files for a speedup in subsequent builds
       - save_cache:
-          key: deps-{{ .Environment.CIRCLE_PROJECT_REPONAME }}-{{ .Environment.CIRCLE_JOB }}-{{ checksum "environment.yml" }}
+          key: deps-{{ .Environment.CIRCLE_PROJECT_REPONAME }}-{{ .Environment.CIRCLE_JOB }}-{{ checksum "_env_copy" }}
           paths:
-            - "/opt/conda/envs/${ENV_NAME}/"
             - "/opt/conda/pkgs"
 
-      # Tell Circle to store the documentation output in a folder that we can access later
       - store_test_results:
-          path: ~/test-reports
+          path: test-reports
 
       - store_artifacts:
-          path: ~/test-reports
+          path: test-reports
+
+jobs:
+
+  "upstream-dev":
+    <<: *shared
+    docker:
+      - image: ncarxdev/miniconda:3.7
+    environment:
+      ENV_FILE: "./environment-upstream-dev.yml"
+      TEST_FILES: "notebooks/Run-Anywhere/**/*.ipynb"
+
+  "python-3.6":
+    <<: *shared
+    docker:
+      - image: ncarxdev/miniconda:3.6
+    environment:
+      ENV_FILE: "./environment.yml"
+      TEST_FILES: "notebooks/Run-Anywhere/**/*.ipynb"
+
+  "python-3.7":
+    <<: *shared
+    docker:
+      - image: ncarxdev/miniconda:3.7
+    environment:
+      ENV_FILE: "./environment.yml"
+      TEST_FILES: "notebooks/Run-Anywhere/**/*.ipynb"
+
+  "python-3.8":
+    <<: *shared
+    docker:
+      - image: ncarxdev/miniconda:3.8
+    environment:
+      ENV_FILE: "./environment.yml"
+      TEST_FILES: "notebooks/Run-Anywhere/**/*.ipynb"

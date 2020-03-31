@@ -48,7 +48,6 @@ shared: &shared
           name: Run Tests
           command: |
             mkdir -p test-reports
-            source activate ${ENV_NAME}
             echo $(circleci tests glob ${TEST_FILES})
             circleci tests glob ${TEST_FILES} | circleci tests split --split-by=timings | xargs python -m pytest --junitxml=test-reports/results.xml -v --current-env --nbval-lax
           no_output_timeout: 30m

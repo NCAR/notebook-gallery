@@ -47,5 +47,5 @@ dependencies:
   - git+https://github.com/NCAR/intake-esm.git
   - git+https://github.com/NCAR/esmlab.git
   - git+https://github.com/NCAR/notebook-gallery.git#egg=ngallery_utils
-  - pooch
   - ncar-jobqueue
+  - pooch

@@ -37,7 +37,7 @@ shared: &shared
       - run:
           name: Install conda environment
           command: |
-            conda env update -n base -f ${ENV_FILE}
+            conda env update -v -v -n base -f ${ENV_FILE}
 
       - run:
           name: List conda packages
@@ -46,6 +46,7 @@ shared: &shared
 
       - run:
           name: Run Tests
+          parallelism: 5
           command: |
             mkdir -p test-reports
             echo $(circleci tests glob ${TEST_FILES})
@@ -71,7 +72,6 @@ jobs:
       - image: ncarxdev/miniconda:3.7
     environment:
       ENV_FILE: "./environment-upstream-dev.yml"
-      ENV_NAME: "notebook-gallery"
       TEST_FILES: "notebooks/Run-Anywhere/**/*.ipynb"
 
   "python-3.6":
@@ -80,7 +80,6 @@ jobs:
       - image: ncarxdev/miniconda:3.6
     environment:
       ENV_FILE: "./environment.yml"
-      ENV_NAME: "notebook-gallery"
       TEST_FILES: "notebooks/Run-Anywhere/**/*.ipynb"
 
   "python-3.7":
@@ -89,7 +88,6 @@ jobs:
       - image: ncarxdev/miniconda:3.7
     environment:
       ENV_FILE: "./environment.yml"
-      ENV_NAME: "notebook-gallery"
       TEST_FILES: "notebooks/Run-Anywhere/**/*.ipynb"
 
   "python-3.8":
@@ -98,5 +96,4 @@ jobs:
       - image: ncarxdev/miniconda:3.8
     environment:
       ENV_FILE: "./environment.yml"
-      ENV_NAME: "notebook-gallery"
       TEST_FILES: "notebooks/Run-Anywhere/**/*.ipynb"

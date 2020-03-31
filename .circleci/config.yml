@@ -25,9 +25,13 @@ workflows:
 shared: &shared
     steps:
       - checkout
+      - run:
+          name: Environment Checksum
+          command: |
+            cat ${ENV_FILE} > _tmp_file
       # Restore cached files to speed things up
       - restore_cache:
-          key: deps-{{ .Environment.CIRCLE_PROJECT_REPONAME }}-{{ .Environment.CIRCLE_JOB }}-{{ checksum ${ENV_FILE} }}
+          key: deps-{{ .Environment.CIRCLE_PROJECT_REPONAME }}-{{ .Environment.CIRCLE_JOB }}-{{ checksum "_tmp_file" }}
       - run: # install and activate conda environment
           name: Install conda environment
           command: |
@@ -45,7 +49,7 @@ shared: &shared
 
       # Cache some files for a speedup in subsequent builds
       - save_cache:
-          key: deps-{{ .Environment.CIRCLE_PROJECT_REPONAME }}-{{ .Environment.CIRCLE_JOB }}-{{ checksum ${ENV_FILE} }}
+          key: deps-{{ .Environment.CIRCLE_PROJECT_REPONAME }}-{{ .Environment.CIRCLE_JOB }}-{{ checksum "_tmp_file" }}
           paths:
             - "/opt/conda/envs/${ENV_NAME}/"
             - "/opt/conda/pkgs"

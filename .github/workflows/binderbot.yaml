@@ -20,7 +20,6 @@ on:
       - 'thumbnail.png'
       - '.github/workflows/binderbot.yaml'
       - '.binder/**'
-
 jobs:
   build:
     name: Binderbot Build

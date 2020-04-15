@@ -21,4 +21,3 @@ jobs:
       with:
         path: binder-gallery.yaml
         strict: true
-        

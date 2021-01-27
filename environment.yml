@@ -33,7 +33,6 @@ dependencies:
 - xarray>=0.14.0
 - xesmf
 - pip:
-  - git+https://github.com/NCAR/intake-esm.git
   - ncar-jobqueue
   - pooch
   - git+https://github.com/NCAR/notebook-gallery.git#egg=ngallery_utils

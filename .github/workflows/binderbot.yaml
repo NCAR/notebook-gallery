@@ -24,6 +24,9 @@ jobs:
   build:
     name: Binderbot Build
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
     steps:
       - uses: actions/checkout@v2
       - name: parse config
@@ -53,9 +56,12 @@ jobs:
         run: |
           git checkout --orphan ${{ steps.parse.outputs.binderbot_target_branch }}
           #git rm --cached -r .
-      - name: Build notebooks using Binderbot
+      - name: Debugging
         run: |
           echo current_directory: `pwd`
+          ls -ltrh
+      - name: Build notebooks using Binderbot
+        run: |
           python -m binderbot.cli \
           --binder-url ${{ steps.parse.outputs.binder_url }} \
           --repo ${{ steps.parse.outputs.binder_repo }} \

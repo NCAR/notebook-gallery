@@ -9,7 +9,7 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - main
     jobs:
       - "upstream-dev"
       - "python-3.6"

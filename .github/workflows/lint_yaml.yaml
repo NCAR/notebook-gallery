@@ -2,12 +2,12 @@ name: Lint Yaml
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - binder-gallery.yaml
   pull_request:
     branches:
-      - master
+      - main
     paths:
       - binder-gallery.yaml
 

@@ -1,10 +1,10 @@
 name: Binderbot
 on:
   # Trigger the workflow on push or pull request,
-  # but only for the master branch
+  # but only for the main branch
   push:
     branches:
-      - master
+      - main
     paths:
       - 'notebooks/Run-Anywhere/*.ipynb'
       - 'binder-gallery.yaml'
@@ -13,7 +13,7 @@ on:
       - '.binder/**'
   pull_request:
     branches:
-      - master
+      - main
     paths:
       - 'notebooks/Run-Anywhere/*.ipynb'
       - 'binder-gallery.yaml'
@@ -47,7 +47,7 @@ jobs:
         with:
           python-version: '3.8'
           architecture: 'x64'
-      - name: Install Binderbot from github master
+      - name: Install Binderbot from github main
         run: pip install git+https://github.com/pangeo-gallery/binderbot.git
       - name: Create Clean Branch
         run: |
@@ -62,15 +62,15 @@ jobs:
           --output-dir . \
           notebooks/Run-Anywhere/*.ipynb
       - name: Commit files
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/main'
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add binder-gallery.yaml thumbnail.png *.ipynb
           git commit -m "Binderbot output"
       - name: Push commit
-        if: github.ref == 'refs/heads/master'
-        uses: ad-m/github-push-action@master
+        if: github.ref == 'refs/heads/main'
+        uses: ad-m/github-push-action@main
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ steps.parse.outputs.binderbot_target_branch }}

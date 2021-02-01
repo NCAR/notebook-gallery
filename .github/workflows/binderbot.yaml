@@ -47,7 +47,7 @@ jobs:
         with:
           python-version: '3.8'
           architecture: 'x64'
-      - name: Install Binderbot from github main
+      - name: Install Binderbot from github master
         run: pip install git+https://github.com/pangeo-gallery/binderbot.git
       - name: Create Clean Branch
         run: |
@@ -70,7 +70,7 @@ jobs:
           git commit -m "Binderbot output"
       - name: Push commit
         if: github.ref == 'refs/heads/master'
-        uses: ad-m/github-push-action@main
+        uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ steps.parse.outputs.binderbot_target_branch }}

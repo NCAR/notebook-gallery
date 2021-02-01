@@ -69,7 +69,7 @@ jobs:
           git add binder-gallery.yaml thumbnail.png *.ipynb
           git commit -m "Binderbot output"
       - name: Push commit
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/master'
         uses: ad-m/github-push-action@main
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

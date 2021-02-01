@@ -52,7 +52,7 @@ jobs:
       - name: Create Clean Branch
         run: |
           git checkout --orphan ${{ steps.parse.outputs.binderbot_target_branch }}
-          git rm --cached -r .
+          #git rm --cached -r .
       - name: Build notebooks using Binderbot
         run: |
           echo current_directory: `pwd`

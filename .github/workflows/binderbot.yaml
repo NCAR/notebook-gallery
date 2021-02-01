@@ -55,6 +55,7 @@ jobs:
           git rm --cached -r .
       - name: Build notebooks using Binderbot
         run: |
+          echo current_directory: `pwd`
           python -m binderbot.cli \
           --binder-url ${{ steps.parse.outputs.binder_url }} \
           --repo ${{ steps.parse.outputs.binder_repo }} \

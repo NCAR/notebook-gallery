@@ -59,7 +59,7 @@ jobs:
       - name: Debugging
         run: |
           echo current_directory: `pwd`
-          ls -ltrh
+          ls -ltRh
       - name: Build notebooks using Binderbot
         run: |
           python -m binderbot.cli \

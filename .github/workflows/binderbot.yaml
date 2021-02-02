@@ -67,7 +67,7 @@ jobs:
           --repo ${{ steps.parse.outputs.binder_repo }} \
           --ref ${{ steps.parse.outputs.binder_ref }} \
           --output-dir . \
-          notebooks/Run-Anywhere/*.ipynb
+          notebooks/Run-Anywhere/*/*.ipynb
       - name: Commit files
         if: github.ref == 'refs/heads/master'
         run: |

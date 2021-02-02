@@ -5,5 +5,5 @@
   gallery_repository: pangeo-gallery/pangeo-gallery
   binder_url: "https://binder.pangeo.io"
   binder_repo: NCAR/notebook-gallery
-  binder_ref: master
+  binder_ref: main
   binderbot_target_branch: binderbot-built

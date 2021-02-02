@@ -69,15 +69,15 @@ jobs:
           --output-dir . \
           notebooks/Run-Anywhere/*/*.ipynb
       - name: Commit files
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/main'
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add binder-gallery.yaml thumbnail.png *.ipynb
           git commit -m "Binderbot output"
       - name: Push commit
-        if: github.ref == 'refs/heads/master'
-        uses: ad-m/github-push-action@master
+        if: github.ref == 'refs/heads/main'
+        uses: ad-m/github-push-action@main
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ steps.parse.outputs.binderbot_target_branch }}

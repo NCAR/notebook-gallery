@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - 'notebooks/Run-Anywhere/*.ipynb'
+      - 'notebooks/Run-Anywhere/**/*.ipynb'
       - 'binder-gallery.yaml'
       - 'thumbnail.png'
       - '.github/workflows/binderbot.yaml'
@@ -15,7 +15,7 @@ on:
     branches:
       - main
     paths:
-      - 'notebooks/Run-Anywhere/*.ipynb'
+      - 'notebooks/Run-Anywhere/**/*.ipynb'
       - 'binder-gallery.yaml'
       - 'thumbnail.png'
       - '.github/workflows/binderbot.yaml'
@@ -67,7 +67,8 @@ jobs:
           --repo ${{ steps.parse.outputs.binder_repo }} \
           --ref ${{ steps.parse.outputs.binder_ref }} \
           --output-dir . \
-          notebooks/Run-Anywhere/*/*.ipynb
+          --nb-timeout 800 \
+          notebooks/Run-Anywhere/**/*.ipynb
       - name: Commit files
         if: github.ref == 'refs/heads/main'
         run: |

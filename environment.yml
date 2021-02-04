@@ -29,7 +29,7 @@ dependencies:
 - pandas
 - pip
 - pytest
-- python>=3.8
+- python
 - scipy
 - tqdm
 - watermark

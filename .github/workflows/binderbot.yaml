@@ -5,21 +5,21 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'notebooks/Run-Anywhere/*.ipynb'
-      - 'binder-gallery.yaml'
-      - 'thumbnail.png'
-      - '.github/workflows/binderbot.yaml'
-      - '.binder/**'
+    #paths:
+    #  - 'notebooks/Run-Anywhere/**/*.ipynb'
+    #  - 'binder-gallery.yaml'
+    #  - 'thumbnail.png'
+    #  - '.github/workflows/binderbot.yaml'
+    #  - '.binder/**'
   pull_request:
     branches:
       - main
-    paths:
-      - 'notebooks/Run-Anywhere/*.ipynb'
-      - 'binder-gallery.yaml'
-      - 'thumbnail.png'
-      - '.github/workflows/binderbot.yaml'
-      - '.binder/**'
+    #paths:
+    #  - 'notebooks/Run-Anywhere/**/*.ipynb'
+    #  - 'binder-gallery.yaml'
+    #  - 'thumbnail.png'
+    #  - '.github/workflows/binderbot.yaml'
+    #  - '.binder/**'
 jobs:
   build:
     name: Binderbot Build
@@ -67,7 +67,7 @@ jobs:
           --repo ${{ steps.parse.outputs.binder_repo }} \
           --ref ${{ steps.parse.outputs.binder_ref }} \
           --output-dir . \
-          notebooks/Run-Anywhere/*/*.ipynb
+          notebooks/Run-Anywhere/**/*.ipynb
       - name: Commit files
         if: github.ref == 'refs/heads/main'
         run: |

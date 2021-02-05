@@ -68,6 +68,7 @@ jobs:
           --repo ${{ steps.parse.outputs.binder_repo }} \
           --ref ${{ steps.parse.outputs.binder_ref }} \
           --output-dir . \
+          --binder-start-timeout 800 \
           --nb-timeout 800 \
           notebooks/Run-Anywhere/**/*.ipynb
       - name: Commit files

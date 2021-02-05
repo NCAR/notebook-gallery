@@ -1,25 +1,26 @@
 name: Binderbot
 on:
   # Trigger the workflow on push or pull request,
-  # but only for the main branch
+  # but only for the main branch.  Comment out filter paths to 
+  # push non-running notebooks to pangeo-gallery.
   push:
     branches:
       - main
-    paths:
-      - 'notebooks/Run-Anywhere/**/*.ipynb'
-      - 'binder-gallery.yaml'
-      - 'thumbnail.png'
-      - '.github/workflows/binderbot.yaml'
-      - '.binder/**'
+    #paths:
+    #  - 'notebooks/Run-Anywhere/**/*.ipynb'
+    #  - 'binder-gallery.yaml'
+    #  - 'thumbnail.png'
+    #  - '.github/workflows/binderbot.yaml'
+    #  - '.binder/**'
   pull_request:
     branches:
       - main
-    paths:
-      - 'notebooks/Run-Anywhere/**/*.ipynb'
-      - 'binder-gallery.yaml'
-      - 'thumbnail.png'
-      - '.github/workflows/binderbot.yaml'
-      - '.binder/**'
+    #paths:
+    #  - 'notebooks/Run-Anywhere/**/*.ipynb'
+    #  - 'binder-gallery.yaml'
+    #  - 'thumbnail.png'
+    #  - '.github/workflows/binderbot.yaml'
+    #  - '.binder/**'
 jobs:
   build:
     name: Binderbot Build

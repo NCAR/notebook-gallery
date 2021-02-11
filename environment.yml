@@ -30,6 +30,7 @@ dependencies:
 - pip
 - pytest
 - python
+- s3fs
 - scipy
 - tqdm
 - watermark

@@ -1,0 +1,42 @@
+name: notebook-gallery
+channels:
+- conda-forge
+dependencies:
+- bokeh
+- bottleneck
+- cartopy
+- cf-units
+- cftime>=1.0.4.2
+- cmaps
+- cmocean
+- dask
+- dask-jobqueue
+- dask-labextension
+- distributed
+- h5py
+- holoviews
+- hvplot
+- intake
+- intake-esm>=2020.8.15
+- ipywidgets
+- jupyterlab
+- matplotlib
+- nbval
+- nc-time-axis
+- netcdf4
+- nodejs
+- numba
+- pandas
+- pip
+- pytest
+- python
+- s3fs
+- scipy
+- tqdm
+- watermark
+- xarray
+- xesmf
+- pip:
+  - ncar-jobqueue
+  - pooch
+  - git+https://github.com/NCAR/notebook-gallery.git#egg=ngallery_utils

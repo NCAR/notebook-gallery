@@ -1,29 +1,33 @@
 name: Binderbot
 on:
   # Trigger the workflow on push or pull request,
-  # but only for the master branch
+  # but only for the main branch.  Comment out filter paths to 
+  # push non-running notebooks to pangeo-gallery.
   push:
     branches:
-      - master
-    paths:
-      - 'notebooks/Run-Anywhere/*.ipynb'
-      - 'binder-gallery.yaml'
-      - 'thumbnail.png'
-      - '.github/workflows/binderbot.yaml'
-      - '.binder/**'
+      - main
+    #paths:
+    #  - 'notebooks/Run-Anywhere/**/*.ipynb'
+    #  - 'binder-gallery.yaml'
+    #  - 'thumbnail.png'
+    #  - '.github/workflows/binderbot.yaml'
+    #  - '.binder/**'
   pull_request:
     branches:
-      - master
-    paths:
-      - 'notebooks/Run-Anywhere/*.ipynb'
-      - 'binder-gallery.yaml'
-      - 'thumbnail.png'
-      - '.github/workflows/binderbot.yaml'
-      - '.binder/**'
+      - main
+    #paths:
+    #  - 'notebooks/Run-Anywhere/**/*.ipynb'
+    #  - 'binder-gallery.yaml'
+    #  - 'thumbnail.png'
+    #  - '.github/workflows/binderbot.yaml'
+    #  - '.binder/**'
 jobs:
   build:
     name: Binderbot Build
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
     steps:
       - uses: actions/checkout@v2
       - name: parse config
@@ -52,7 +56,11 @@ jobs:
       - name: Create Clean Branch
         run: |
           git checkout --orphan ${{ steps.parse.outputs.binderbot_target_branch }}
-          git rm --cached -r .
+          #git rm --cached -r .
+      - name: Debugging
+        run: |
+          echo current_directory: `pwd`
+          ls -ltRh
       - name: Build notebooks using Binderbot
         run: |
           python -m binderbot.cli \
@@ -60,16 +68,18 @@ jobs:
           --repo ${{ steps.parse.outputs.binder_repo }} \
           --ref ${{ steps.parse.outputs.binder_ref }} \
           --output-dir . \
-          notebooks/Run-Anywhere/*.ipynb
+          --binder-start-timeout 800 \
+          --nb-timeout 800 \
+          notebooks/Run-Anywhere/**/*.ipynb
       - name: Commit files
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/main'
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add binder-gallery.yaml thumbnail.png *.ipynb
           git commit -m "Binderbot output"
       - name: Push commit
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/main'
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

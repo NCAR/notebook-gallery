@@ -2,6 +2,7 @@ name: notebook-gallery
 channels:
 - conda-forge
 dependencies:
+- altair
 - bokeh
 - bottleneck
 - cartopy

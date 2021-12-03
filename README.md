@@ -13,7 +13,7 @@ This gallery is intended to provide working examples for how to perform data ana
 
 To try these notebooks in your web browser, just click on the binder link:
 
-[![Binder](https://i.imgur.com/xzKbKkP.png)](https://binder.pangeo.io/v2/gh/NCAR/notebook-gallery/master)
+[![Binder](https://i.imgur.com/xzKbKkP.png)](https://binder.pangeo.io/v2/gh/NCAR/notebook-gallery/main)
 
 
 ## Running Locally
